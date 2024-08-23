@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct CharactersListView: View {
-    @State private var charactersModel = CharactersListViewModel()
+    @StateObject private var viewModel = ViewModel( CharacterUseCases(api: RickAndMortyAPIs.RickAndMortyApi))
     
     
     var body: some View {
         NavigationStack{
-            List(charactersModel.characters) { character in
+            List(viewModel.characters) { character in
                 NavigationLink(destination: CharacterItem(character: character)){
                     CharacterItem(character: character)
                 }
@@ -21,7 +21,7 @@ struct CharactersListView: View {
             }
             .navigationTitle("Characters")
             .task{
-                try? await charactersModel.fetchCharacters()
+                 viewModel.collectionViewDidScrolldown()
             }
         }
         
