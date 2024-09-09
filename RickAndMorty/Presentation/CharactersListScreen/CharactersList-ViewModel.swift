@@ -20,6 +20,8 @@ extension CharactersListView{
         
         @Published var characters: [Character] = []
         @Published var error: Error? = nil
+        @Published var isLoading = false
+        @Published var isFinished = false
         
         private var currentPage = 0
         private let useCases: CharacterUseCases
@@ -45,7 +47,7 @@ extension CharactersListView{
                 
                 Task {
                     let charactersList = await getCharacters(page: page)
-                    let newCharactersList = self.characters + charactersList
+                    let newCharactersList = charactersList
                     DispatchQueue.main.async {
                         self.characters.append(contentsOf: newCharactersList)
                     }

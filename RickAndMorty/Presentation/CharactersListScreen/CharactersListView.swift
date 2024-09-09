@@ -13,15 +13,21 @@ struct CharactersListView: View {
     
     var body: some View {
         NavigationStack{
-            List(viewModel.characters) { character in
+            List(viewModel.characters, id: \.id) { character in
                 NavigationLink(destination: CharacterItem(character: character)){
                     CharacterItem(character: character)
                 }
-                
+                .onAppear{
+                    if(viewModel.characters.last?.id == character.id){
+                        viewModel.collectionViewDidScrolldown()
+                    }
+                }
             }
             .navigationTitle("Characters")
             .task{
-                 viewModel.collectionViewDidScrolldown()
+                if !viewModel.isFinished{
+                    viewModel.collectionViewDidScrolldown()
+                }
             }
         }
         

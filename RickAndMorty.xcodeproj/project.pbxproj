@@ -82,8 +82,8 @@
 		744C4A372C575ABF0033A046 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				747EA2252C5CA30600A701AE /* CharacterDetailsScreen */,
 				74F568662C59F943004BF457 /* Components */,
+				747EA2252C5CA30600A701AE /* CharacterDetailsScreen */,
 				747EA2242C5CA27200A701AE /* CharactersListScreen */,
 			);
 			path = Presentation;
